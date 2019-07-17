@@ -1,7 +1,7 @@
 
 # standard
 from __future__ import print_function, division
-from socket_wrapper import Socket
+from egi.socket_wrapper import Socket
 import struct
 import math
 import time
@@ -344,7 +344,7 @@ class _DataFormat(object):
             # also integers are 64-bit on 64-bit Unix, so we have to  check their size,
             # see the 'check_table' below
             type(1): ('long', '=l'),  # '=' -- translation is: four bytes
-            type(1L): ('long', '=l'),  # '=' -- translation is: four bytes
+            type(1): ('long', '=l'),  # '=' -- translation is: four bytes
             # type(1.0): ('doub', '=d'),  # " 64 bit I3E floating-point number "
             ## temp test
             ## type(1.0): ('sing', '=f'),  # " 64 bit I3E floating-point number "
@@ -362,7 +362,7 @@ class _DataFormat(object):
         self._check_table = {
             # type(1L):  lambda x: int(x), # if this fails then the next attempt would have probably been do
             type(1): is_32_bit_int_compatible,
-            type(1L): is_32_bit_int_compatible,
+            type(1): is_32_bit_int_compatible,
         }
 
     def _get_hints(self, data):
@@ -439,7 +439,7 @@ class _DataFormat(object):
 
         else: # else convert to string and truncate or pad
 
-            for i in xrange(len(keys)):
+            for i in range(len(keys)):
 
                 k = keys[i]
                 if type(k) != type(''):

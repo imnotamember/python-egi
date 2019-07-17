@@ -16,8 +16,8 @@
 # -----------------------------------------------------------------------------
 # -----------------------------------------------------------------------------
 
-import simple as internal # Netstation object, mostly
-from socket_wrapper import Socket
+import egi.simple as internal # Netstation object, mostly
+from egi.socket_wrapper import Socket
 
 #
 # "forward" these names to be used from outside
@@ -34,12 +34,12 @@ ms_localtime = internal.ms_localtime
 
 import types # MethodType, FunctionType
 ## import inspect # .ismethod()
-from StringIO import StringIO
+from io import StringIO
 
 # -----------------------------------------------------------------------------
 
 from threading import Thread
-from Queue import Queue
+from queue import Queue
 
 import time # time() for 'soft timeouts'
 
@@ -248,7 +248,7 @@ class Netstation:
 
         n_available = self._to_receive.qsize()
 
-        for i in xrange(n_available):
+        for i in range(n_available):
 
             data = self._get()
             yield data
@@ -331,7 +331,7 @@ class Netstation:
             self.process_responses()
 
         # debug
-        print " egi: stopping ... "
+        print(" egi: stopping ... ")
 
         ## self._disconnect()
 
@@ -357,7 +357,7 @@ class Netstation:
     # don't pollute the namespace too much
     local_names = locals().keys()
 
-    from fwhelper import FunctionWrappingHelper as FWH
+    from egi.fwhelper import FunctionWrappingHelper as FWH
 
     # a shortcut
     _NS = internal.Netstation
@@ -492,7 +492,7 @@ class Netstation:
         call_ = call_.getvalue()
 
         code = header + call_
-        exec code
+        exec(code)
 
         ## # debug
         ## print code
@@ -509,7 +509,7 @@ class Netstation:
     extended_ = locals().keys()
     # here 'v' stands for "var", not for "vendetta"
     delete_ = [ v for v in extended_ if v not in local_names ]
-    for v in delete_: exec "del %s" % (v,)
+    for v in delete_: exec("del %s" % (v,))
     del delete_, v
 
 
@@ -643,9 +643,9 @@ class Netstation:
 
 if __name__ == "__main__":
 
-    print __doc__
-    print "\n === \n"
+    print(__doc__)
+    print("\n === \n")
     # print "module dir() listing: ", __dict__.keys()
-    print "module dir() listing: ", dir()
+    print("module dir() listing: ", dir())
 
 

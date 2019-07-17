@@ -10,8 +10,8 @@
 # -----------------------------------------------------------------------------
 # -----------------------------------------------------------------------------
 
-import simple as internal # Netstation object, mostly
-from socket_wrapper import Socket
+import egi.simple as internal # Netstation object, mostly
+from egi.socket_wrapper import Socket
 
 #
 # "forward" these names to be used from outside
@@ -33,7 +33,7 @@ ms_localtime = internal.ms_localtime
 # -----------------------------------------------------------------------------
 
 from threading import Thread
-from Queue import Queue
+from queue import Queue
 
 import time # time() for 'soft timeouts'
 
@@ -242,7 +242,7 @@ class Netstation:
 
         n_available = self._to_receive.qsize()
 
-        for i in xrange(n_available):
+        for i in range(n_available):
 
             data = self._get()
             yield data
@@ -325,7 +325,7 @@ class Netstation:
             self.process_responces()
 
         # debug
-        print " egi: stopping ... "
+        print(" egi: stopping ... ")
 
         ## self._disconnect()
 
@@ -457,9 +457,9 @@ class Netstation:
 
 if __name__ == "__main__":
 
-    print __doc__
-    print "\n === \n"
+    print(__doc__)
+    print("\n === \n")
     # print "module dir() listing: ", __dict__.keys()
-    print "module dir() listing: ", dir()
+    print("module dir() listing: ", dir())
 
 

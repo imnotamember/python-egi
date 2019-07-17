@@ -127,28 +127,31 @@ class FunctionWrappingHelper(object):
     def dump(self):
         """ [debug] dump the function info to stdout """
 
-        print '\n\n---\n\n', self.name, ':'
+        print('\n\n---\n\n', self.name, ':')
         for entry in self.enum_argentries(True):
-
-            print '\t', entry, ','
+            print('\t', entry, ',')
 
 
 if __name__ == "__main__":
 
-    print __doc__
-    print "\n === \n"
+    print(__doc__)
+    print("\n === \n")
     # print "module dir() listing: ", __dict__.keys()
-    print "module dir() listing: ", dir()
+    print("module dir() listing: ", dir())
+
 
     def test_fn0(): pass
-    def test_fn1(arg): print arg # just to have sth different
+    def test_fn1(arg):
+        print(arg)  # just to have sth different
+
+
     def test_fn2(a,b,c): pass
     def test_fn3(a,b,c,d=1,e="abc foods", *args): pass
     def test_fn4(a,b,c,*args, **kwargs): pass
     def test_fn5(a,b,c,d,e=1, f=1.0, g=[1,2,3], h = (1,2,3), i = "abc def", j = lambda x: x, k = FunctionWrappingHelper(lambda x: x), *args, **kwargs):
-        print a,b,c,d,e,f,g,h,i,j,k
-        print "args: ", args
-        print "kwargs: ", kwargs
+        print(a, b, c, d, e, f, g, h, i, j, k)
+        print("args: ", args)
+        print("kwargs: ", kwargs)
         return a
 
     def test_fn6(a = None): pass
@@ -156,9 +159,9 @@ if __name__ == "__main__":
 
     for f in [test_fn0, test_fn1, test_fn2, test_fn3, test_fn4, test_fn5, test_fn6 ]:
         w = FunctionWrappingHelper(f)
-        print '\n\n---\n\n', w.name, ':'
+        print('\n\n---\n\n', w.name, ':')
         for entry in w.enum_argentries(b_all = True):
-            print '\t', entry, ','
+            print('\t', entry, ',')
 
 
 
